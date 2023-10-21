@@ -1,19 +1,24 @@
 package org.example;
 
+import org.example.Uitls.DataInit;
+
 // 按两次 Shift 打开“随处搜索”对话框并输入 `show whitespaces`，
 // 然后按 Enter 键。现在，您可以在代码中看到空格字符。
 public class Main {
     public static void main(String[] args) {
-        // 当文本光标位于高亮显示的文本处时按 Alt+Enter，
-        // 可查看 IntelliJ IDEA 对于如何修正该问题的建议。
-        System.out.printf("Hello and welcome!");
+//        初始化数据处理类
+        DataInit dataInit = new DataInit(
+                "res/user_tag_query.10W.TRAIN",
+                new String[]{"好吃","好喝","好玩","开心","春天","大地","太阳","头发","奔跑","柴火","闪电","祝福","山川","心脏","月亮"},
+                "res/output.txt"
+        );
 
-        // 按 Shift+F10 或点击装订区域中的绿色箭头按钮以运行脚本。
-        for (int i = 1; i <= 5; i++) {
-
-            // 按 Shift+F9 开始调试代码。我们已为您设置了一个断点，
-            // 但您始终可以通过按 Ctrl+F8 添加更多断点。
-            System.out.println("i = " + i);
+        //进行数据处理
+        try {
+            dataInit.doInit();
+        }catch (Exception e){
+            e.printStackTrace();
         }
+
     }
 }
