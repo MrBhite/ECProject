@@ -22,7 +22,8 @@ public class DataInit {
             for(String token : tokens){
                 for(String key:args){
                     if (token.contains(key)){
-                        bw.append(token);
+                        String temp = IKUtil.splitKeyWord(token).toString();
+                        bw.append(temp);
                         bw.newLine();
                     }
                 }
