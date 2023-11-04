@@ -13,20 +13,20 @@ public class IKUtil {
     /**
      *  分词
      * @param keyword 需要分词的文本
-     * @return
+     * @return result
      */
-    public static List<String> splitKeyWord(String keyword) throws IOException {
+    public static String splitKeyWord(String keyword) throws IOException {
 
-        ArrayList<String> result = new ArrayList<>();
+        String result = new String();
         // 创建一个reader对象
         StringReader reader = new StringReader(keyword);
         // 创建一个分词对象
-        IKSegmenter ikSegmenter = new IKSegmenter(reader, false);
+        IKSegmenter ikSegmenter = new IKSegmenter(reader, true);
         Lexeme next = ikSegmenter.next();
 
         while ( next != null ) {
             // 获取分词的结果
-            result.add(next.getLexemeText());
+            result += (next.getLexemeText()+" ");
             next = ikSegmenter.next();
         }
         return result;
