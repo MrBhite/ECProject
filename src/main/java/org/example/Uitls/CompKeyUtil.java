@@ -9,6 +9,20 @@ import java.util.*;
 @AllArgsConstructor
 public class CompKeyUtil {
 
+//    public static void main(String[] args) {
+//        String[] keys = {"耳机","好喝","好玩","开心","春天","大地","太阳","头发","奔跑","柴火","闪电","祝福","山川","心脏","月亮"};
+//        String[] no_use_args = {"的", "吗", "什么", "有", "一个", "是"};
+//        // 初始化数据处理类
+//        DataInit dataInit = new DataInit(
+//                "res/user_tag_query.10W.TRAIN",
+//                keys,
+//                no_use_args,
+//                "res/output.txt",
+//                true
+//        );
+//
+//    }
+
     public List<Map.Entry<String, Integer>> findMiddle(String key) throws Exception{
         // 打开并读取文件
         InputStreamReader inStream = new InputStreamReader(new FileInputStream(new File(dataInit.getOutPath())), "GBK");
@@ -20,8 +34,8 @@ public class CompKeyUtil {
         // 读取中间关键词并置入map中
         while((valueString = br.readLine()) != null){
             if(!valueString.contains(key)) continue; // 如果该搜索记录含有所需关键字
-            valueString = valueString.substring(1, valueString.length() - 1);
-            tokens = valueString.split(", ");
+
+            tokens = valueString.split(" ");
             for(String token : tokens){
                 wordCountMap.put(token, wordCountMap.getOrDefault(token, 0) + 1);
             }
@@ -81,8 +95,7 @@ public class CompKeyUtil {
                 sum++;
                 if (token.contains(key)){
                     String temp = IKUtil.splitKeyWord(token).toString();
-                    temp = temp.substring(1, temp.length() - 1);
-                    tokens2 = temp.split(", ");
+                    tokens2 = temp.split(" ");
                     for(String tok : tokens2){
                         if(tok.equals(key)) continue;
                         wordCountMap.put(tok, wordCountMap.getOrDefault(tok, 0) + 1);
